@@ -1,2 +1,2 @@
 # write-something
-A writing app that aims to be modern, flexible, and feature-rich.
+A writing app that saims to be modern, flexible, and feature-rich.
