@@ -1,0 +1,25 @@
+{
+  "name": "Write Something!",
+  "version": "0.1.0",
+  "description": "A writing app that aims to be modern, flexible, and feature-rich.",
+  "main": "init.js",
+  "scripts": {
+    "test": "electron .",
+    "pack:win": "electron-packager . 'Write Something!' --ignore=release-builds --ignore=build_assets --overwrite --version-string.LegalCopyright='Created by Justin harrelson' --platform=win32 --arch=x64,ia32 --icon=build_assets/icons/write.ico --prune=true --out=release-builds --version-string.CompanyName='Justin Harrelson' --version-string.FileDescription=CE --version-string.ProductName='Write Something!'",
+    "pack:mac": "electron-packager . 'Write Something!' --ignore=release-builds --ignore=build_assets --overwrite --version-string.LegalCopyright='Created by Justin harrelson' --platform=darwin --arch=x64.arm64 --icon=build_assets/icons/write.icns --prune=true --out=release-builds --version-string.CompanyName='Justin Harrelson' --version-string.FileDescription=CE --version-string.ProductName='Write Something!'",
+    "pack:linux": "electron-packager . 'Write Something!' --ignore=release-builds --ignore=build_assets --overwrite --version-string.LegalCopyright='Created by Justin harrelson' --platform=linux --arch=ia32,x64,armv7l,arm64 --icon=build_assets/icons/write_logo_1024.png --prune=true --out=release-builds --version-string.CompanyName='Justin Harrelson' --version-string.FileDescription=CE --version-string.ProductName='Write Something!'",
+    "build": "npm run pack:win && npm run pack:linux",
+    "build:mac": "npm run pack:mac"
+  },
+  "author": "Justin Harrelson",
+  "license": "MIT",
+  "dependencies": {
+    "electron-store": "^6.0.1",
+    "electron-window-state": "^5.0.3",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "electron": "^12.0.2",
+    "electron-packager": "^15.2.0"
+  }
+}
