@@ -17,6 +17,8 @@ function createWindow () {
     y: mainWindowState.y,
     width: mainWindowState.width,
     height: mainWindowState.height,
+    frame: false,
+    titleBarStype: "inset",
     minWidth: 1024,
     minHeight: 600,
     webPreferences: {

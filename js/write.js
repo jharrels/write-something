@@ -103,13 +103,11 @@ const template = [
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu);
 
-
-
-/*let titlebar = new customTitlebar.Titlebar({
-  backgroundColor: customTitlebar.Color.fromHex('#ffffff'),
+let titlebar = new customTitlebar.Titlebar({
+  backgroundColor: customTitlebar.Color.fromHex('#ddd'),
   menu: null,
   overflow: "hidden"
-});*/
+});
 
 /* ----------------------------------------------------------------------------
    LOAD PREFS AND SETUP THE GUI AT LAUNCH
