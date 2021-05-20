@@ -12,20 +12,18 @@ function createWindow () {
   let win = new BrowserWindow({
     devTools: true,
     show: false,
-    backgroundColor: "#888",
+    backgroundColor: "#fff",
     x: mainWindowState.x,
     y: mainWindowState.y,
     width: mainWindowState.width,
     height: mainWindowState.height,
-    titleBarStyle: "hiddenInset",
-    frame: false,
     minWidth: 1024,
     minHeight: 600,
     webPreferences: {
       enableRemoteModule: true,
       contextIsolation: false,
       nodeIntegration: true,
-      spellcheck: false
+      spellcheck: true
     }
   })
 

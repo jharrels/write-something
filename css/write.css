@@ -1,0 +1,20 @@
+body,
+html {
+    background-color: #1b262c;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    user-select:none;
+}
+
+.titlebar {
+  height: 30px !important;
+}
+
+.container-after-titlebar {
+  inset: 30px 0px 0px !important;
+  position: absolute !important;
+  overflow: hidden !important;
+}

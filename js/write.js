@@ -23,13 +23,93 @@ var selectedConfig = "";
 var importGamePath = "";
 var audioDevices = [];
 
-//Menu.setApplicationMenu(null);
+const template = [
+   {
+      label: 'Edit',
+      submenu: [
+         {
+            role: 'undo'
+         },
+         {
+            role: 'redo'
+         },
+         {
+            type: 'separator'
+         },
+         {
+            role: 'cut'
+         },
+         {
+            role: 'copy'
+         },
+         {
+            role: 'paste'
+         }
+      ]
+   },
 
-let titlebar = new customTitlebar.Titlebar({
+   {
+      label: 'View',
+      submenu: [
+         {
+            role: 'reload'
+         },
+         {
+            role: 'toggledevtools'
+         },
+         {
+            type: 'separator'
+         },
+         {
+            role: 'resetzoom'
+         },
+         {
+            role: 'zoomin'
+         },
+         {
+            role: 'zoomout'
+         },
+         {
+            type: 'separator'
+         },
+         {
+            role: 'togglefullscreen'
+         }
+      ]
+   },
+
+   {
+      role: 'window',
+      submenu: [
+         {
+            role: 'minimize'
+         },
+         {
+            role: 'close'
+         }
+      ]
+   },
+
+   {
+      role: 'help',
+      submenu: [
+         {
+            label: 'Learn More'
+         }
+      ]
+   }
+]
+
+const menu = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(menu);
+
+
+
+/*let titlebar = new customTitlebar.Titlebar({
   backgroundColor: customTitlebar.Color.fromHex('#ffffff'),
   menu: null,
   overflow: "hidden"
-});
+});*/
 
 /* ----------------------------------------------------------------------------
    LOAD PREFS AND SETUP THE GUI AT LAUNCH
