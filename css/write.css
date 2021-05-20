@@ -10,10 +10,24 @@ html {
 
 .titlebar {
   height: 30px !important;
+  z-index: 500 !important;
 }
 
 .container-after-titlebar {
-  inset: 30px 0px 0px !important;
+  inset: 0px 0px 0px !important;
   position: absolute !important;
   overflow: hidden !important;
+}
+
+/**************************************************************/
+/* SIDE PANE                                                  */
+/**************************************************************/
+#pane-side {
+  width: 300px;
+  background-color: #ddd;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 501;
 }

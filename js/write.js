@@ -104,7 +104,7 @@ const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu);
 
 let titlebar = new customTitlebar.Titlebar({
-  backgroundColor: customTitlebar.Color.fromHex('#ddd'),
+  backgroundColor: customTitlebar.Color.fromHex('#000'),
   menu: null,
   overflow: "hidden"
 });
