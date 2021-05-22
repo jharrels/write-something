@@ -25,9 +25,20 @@ html {
 #pane-side {
   width: 300px;
   background-color: #ddd;
-  height: 100vh;
+  height: calc(100vh - 30px);
   position: absolute;
-  top: 0;
+  top: 30;
   left: 0;
   z-index: 501;
+}
+
+.button {
+  position: absolute;
+  top: 5px;
+  left: 30px;
+  color: black;
+  z-index: 501;
+  font-size: 20px;
+  display: inline-block;
+  -webkit-app-region: no-drag;
 }

@@ -104,7 +104,7 @@ const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu);
 
 let titlebar = new customTitlebar.Titlebar({
-  backgroundColor: customTitlebar.Color.fromHex('#000'),
+  backgroundColor: customTitlebar.Color.fromHex('#ddd'),
   menu: null,
   overflow: "hidden"
 });
@@ -129,6 +129,10 @@ $(`#${listMode}-view`).addClass("active");
 
 parseScummyConfig();
 checkInitState();
+
+$(".button").on("click", function() {
+  alert("clicked!");
+});
 
 /* ----------------------------------------------------------------------------
    HANDLE GUI EVENTS, SUCH AS CLICKING AND MOVING THE MOUSE
