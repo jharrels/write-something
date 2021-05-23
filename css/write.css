@@ -22,23 +22,43 @@ html {
 /**************************************************************/
 /* SIDE PANE                                                  */
 /**************************************************************/
-#pane-side {
-  width: 300px;
-  background-color: #ddd;
-  height: calc(100vh - 30px);
+#pane-library {
+  width: 20%;
+  box-sizing: border-box;
+  height: 100vh;
   position: absolute;
-  top: 30;
+  top: 0;
   left: 0;
   z-index: 501;
 }
 
-.button {
+#pane-library-interior {
+  width: 20%;
+  box-sizing: border-box;
   position: absolute;
-  top: 5px;
-  left: 30px;
-  color: black;
+  height: calc(100% - 30px);
+  width: 100%;
+  top: 30;
+  left: 0;
+  display: inline-block;
+}
+
+#pane-documents {
+  width: 20%;
+  box-sizing: border-box;
+  height: calc(100vh - 30px);
+  position: absolute;
+  top: 0;
+  left: 20%;
   z-index: 501;
-  font-size: 20px;
+}
+
+.button {
+  padding: 4px 12px 4px 12px;
+  margin: 4px 4px 4px 0px;
+  border-radius: 5px;
+  z-index: 501;
+  font-size: 14px;
   display: inline-block;
   -webkit-app-region: no-drag;
 }

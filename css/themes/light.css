@@ -1,3 +1,13 @@
 html {
   background-color: #fff;
 }
+
+.button {
+  color: #ddd;
+  background: #999;
+}
+
+#pane-library-interior {
+  background-color: #eee;
+  border-right: 2px solid #ddd;
+}
