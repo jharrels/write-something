@@ -11,3 +11,8 @@ html {
   background-color: #eee;
   border-right: 2px solid #ddd;
 }
+
+#pane-documents-interior {
+  background-color: #fff;
+  border-right: 2px solid #ddd;
+}

@@ -45,11 +45,32 @@ html {
 
 #pane-documents {
   width: 20%;
-  box-sizing: border-box;
-  height: calc(100vh - 30px);
+  box-sizing: borderbox;
+  height: 100vh;
   position: absolute;
   top: 0;
   left: 20%;
+  z-index: 501;
+}
+
+#pane-documents-interior {
+  width: 20%;
+  box-sizing: border-box;
+  position: absolute;
+  height: calc(100% - 30px);
+  width: 100%;
+  top: 30;
+  left: 0;
+  display: inline-block;
+}
+
+#pane-editor {
+  width: 60%;
+  box-sizing: borderbox;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 40%;
   z-index: 501;
 }
 
