@@ -10,7 +10,7 @@ html {
 
 .titlebar {
   height: 30px !important;
-  z-index: 500 !important;
+  z-index: 1 !important;
 }
 
 .container-after-titlebar {
@@ -20,7 +20,7 @@ html {
 }
 
 /**************************************************************/
-/* SIDE PANE                                                  */
+/* LIBRARY PANE                                               */
 /**************************************************************/
 #pane-library {
   width: 20%;
@@ -29,7 +29,7 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 501;
+  z-index: 2;
 }
 
 #pane-library-interior {
@@ -43,6 +43,20 @@ html {
   display: inline-block;
 }
 
+#divider-library {
+  width: 4px;
+  height: calc(100% - 30px);
+  position: absolute;
+  display: inline-block;
+  z-index: 3;
+  left: 20%;
+  top: 30;
+  cursor: ew-resize;
+}
+
+/**************************************************************/
+/* DOCUMENTS PANE                                             */
+/**************************************************************/
 #pane-documents {
   width: 20%;
   box-sizing: borderbox;
@@ -50,7 +64,7 @@ html {
   position: absolute;
   top: 0;
   left: 20%;
-  z-index: 501;
+  z-index: 2;
 }
 
 #pane-documents-interior {
@@ -64,16 +78,29 @@ html {
   display: inline-block;
 }
 
+/**************************************************************/
+/* EDITOR  PANE                                               */
+/**************************************************************/
+#button-bar-editor {
+  top: 0;
+  left: 40%;
+  z-index: 2;
+  display: inline-block;
+  position: absolute;
+}
+
 #pane-editor {
   width: 60%;
   box-sizing: borderbox;
-  height: 100vh;
+  height: calc(100vh - 30px);
   position: absolute;
-  top: 0;
+  top: 30;
   left: 40%;
-  z-index: 501;
 }
 
+/**************************************************************/
+/* BUTTONS AND OTHER UI ELEMENTS                              */
+/**************************************************************/
 .button {
   padding: 4px 12px 4px 12px;
   margin: 4px 4px 4px 0px;

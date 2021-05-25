@@ -4,7 +4,14 @@ html {
 
 .button {
   color: #ddd;
+  background: #aaa;
+  transition: all .25s;
+}
+
+.button:hover {
+  color: #fff;
   background: #999;
+  transition: all .25s;
 }
 
 #pane-library-interior {
