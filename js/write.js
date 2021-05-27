@@ -131,6 +131,30 @@ $(".button").on("click", function() {
   alert("clicked!");
 });
 
+$("#divider-library").draggable({ containment: "parent", axis: "x",
+    drag: function() {
+        let position = $("#divider-library").position();
+        let viewportWidth = window.outerWidth;
+        let maxWidth = viewportWidth * .35;
+        let minWidth = viewportWidth * .15;
+        if ((position.left >= minWidth) && (position.left <= maxWidth)) {
+          $("#pane-library").width(position.left + 5);
+          $("#pane-documents").css({"left": position.left+6});
+          let libraryWidth = $("#pane-library").width();
+          let documentsWidth = $("#pane-documents").width();
+          $("#pane-editor").width(viewportWidth - libraryWidth - documentsWidth)
+            .css({"left": documentsWidth + libraryWidth});
+        }
+        $("#button-bar-editor").css({"left": $("#pane-editor").position().left});
+    },
+    stop: function() {
+      $("#divider-library").css({"left":$("#pane-library").width()-5});
+    }
+});
+
+/* ----------------------------------------------------------------------------
+   UI FUNCTIONS
+---------------------------------------------------------------------------- */
 function repositionUI() {
-  $("#divider-library").css({"left":$("#pane-library").width()-3});
+  $("#divider-library").css({"left":$("#pane-library").width()-5});
 }

@@ -44,7 +44,7 @@ html {
 }
 
 #divider-library {
-  width: 4px;
+  width: 10px;
   height: calc(100% - 30px);
   position: absolute;
   display: inline-block;
