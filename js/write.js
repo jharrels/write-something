@@ -149,6 +149,28 @@ $("#divider-library").draggable({ containment: "parent", axis: "x",
     },
     stop: function() {
       $("#divider-library").css({"left":$("#pane-library").width()-5});
+      $("#divider-documents").css({"left":$("#pane-documents").width()+$("#pane-library").width()-5});
+    }
+});
+
+$("#divider-documents").draggable({ containment: "parent", axis: "x",
+    drag: function() {
+        let position = $("#divider-documents").position();
+        let viewportWidth = window.outerWidth;
+        let maxWidth = viewportWidth * .35;
+        let minWidth = viewportWidth * .15;
+        let libraryWidth = $("#pane-library").width();
+        if ((position.left - libraryWidth >= minWidth) && (position.left - libraryWidth <= maxWidth)) {
+          $("#pane-documents").width(position.left - libraryWidth + 5);
+          let documentsWidth = $("#pane-documents").width();
+          $("#pane-editor").width(viewportWidth - libraryWidth - documentsWidth)
+            .css({"left": documentsWidth + libraryWidth});
+        }
+        $("#button-bar-editor").css({"left": $("#pane-editor").position().left});
+    },
+    stop: function() {
+      $("#divider-library").css({"left":$("#pane-library").width()-5});
+      $("#divider-documents").css({"left":$("#pane-documents").width()+$("#pane-library").width()-5});
     }
 });
 
@@ -157,4 +179,5 @@ $("#divider-library").draggable({ containment: "parent", axis: "x",
 ---------------------------------------------------------------------------- */
 function repositionUI() {
   $("#divider-library").css({"left":$("#pane-library").width()-5});
+  $("#divider-documents").css({"left":$("#pane-documents").width()+$("#pane-library").width()-5});
 }

@@ -54,6 +54,16 @@ html {
   cursor: ew-resize;
 }
 
+#divider-documents {
+  width: 10px;
+  height: calc(100% - 30px);
+  position: absolute;
+  display: inline-block;
+  z-index: 3;
+  left: 40%;
+  top: 30;
+  cursor: ew-resize;
+}
 /**************************************************************/
 /* DOCUMENTS PANE                                             */
 /**************************************************************/
