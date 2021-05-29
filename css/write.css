@@ -54,16 +54,10 @@ html {
   cursor: ew-resize;
 }
 
-#divider-documents {
-  width: 10px;
-  height: calc(100% - 30px);
-  position: absolute;
-  display: inline-block;
-  z-index: 3;
-  left: 40%;
-  top: 30;
-  cursor: ew-resize;
+#pane-library-interior > .header {
+  
 }
+
 /**************************************************************/
 /* DOCUMENTS PANE                                             */
 /**************************************************************/
@@ -86,6 +80,17 @@ html {
   top: 30;
   left: 0;
   display: inline-block;
+}
+
+#divider-documents {
+  width: 10px;
+  height: calc(100% - 30px);
+  position: absolute;
+  display: inline-block;
+  z-index: 3;
+  left: 40%;
+  top: 30;
+  cursor: ew-resize;
 }
 
 /**************************************************************/

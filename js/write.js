@@ -145,7 +145,6 @@ $("#divider-library").draggable({ containment: "parent", axis: "x",
           $("#pane-editor").width(viewportWidth - libraryWidth - documentsWidth)
             .css({"left": documentsWidth + libraryWidth});
         }
-        $("#button-bar-editor").css({"left": $("#pane-editor").position().left});
     },
     stop: function() {
       $("#divider-library").css({"left":$("#pane-library").width()-5});
@@ -166,10 +165,8 @@ $("#divider-documents").draggable({ containment: "parent", axis: "x",
           $("#pane-editor").width(viewportWidth - libraryWidth - documentsWidth)
             .css({"left": documentsWidth + libraryWidth});
         }
-        $("#button-bar-editor").css({"left": $("#pane-editor").position().left});
     },
     stop: function() {
-      $("#divider-library").css({"left":$("#pane-library").width()-5});
       $("#divider-documents").css({"left":$("#pane-documents").width()+$("#pane-library").width()-5});
     }
 });
@@ -178,6 +175,11 @@ $("#divider-documents").draggable({ containment: "parent", axis: "x",
    UI FUNCTIONS
 ---------------------------------------------------------------------------- */
 function repositionUI() {
+  let viewportWidth = window.outerWidth;
   $("#divider-library").css({"left":$("#pane-library").width()-5});
   $("#divider-documents").css({"left":$("#pane-documents").width()+$("#pane-library").width()-5});
+  if (os.type() == 'Darwin') {
+  } else {
+    $("#button-bar-editor").css({"left":viewportWidth - $(".window-controls-container").width() - $("#button-bar-editor").width()});
+  }
 }
