@@ -14,15 +14,6 @@ const Store = require('electron-store');
 const store = new Store();
 const customTitlebar = require('custom-electron-titlebar');
 
-var scummvmConfig = {};
-var scummyConfig = {};
-var tempConfig = {};
-var installed;
-var selectedGame = "";
-var selectedConfig = "";
-var importGamePath = "";
-var audioDevices = [];
-
 const template = [
    {
       label: 'Edit',
@@ -112,19 +103,8 @@ let titlebar = new customTitlebar.Titlebar({
 /* ----------------------------------------------------------------------------
    LOAD PREFS AND SETUP THE GUI AT LAUNCH
 ---------------------------------------------------------------------------- */
-var listMode = store.get('listMode');
-if (listMode === undefined) listMode = "gallery";
-var favorites = store.get('favorites');
-if (favorites === undefined) favorites = [];
-var defaultVersion = store.get('defaultVersion');
-if (defaultVersion === undefined) defaultVersion = {};
-var selectedCategory = store.get('selectedCategory');
-if (selectedCategory === undefined) selectedCategory = "all";
-var recentList = store.get('recentList');
-if (recentList === undefined) recentList = [];
-var scummyConfig = store.get('scummyConfig');
-if (scummyConfig === undefined) scummyConfig = {};
-
+var prefs = loadPrefs();
+var library = loadLIbrary();
 repositionUI();
 
 $(".button").on("click", function() {
@@ -182,4 +162,24 @@ function repositionUI() {
   } else {
     $("#button-bar-editor").css({"left":viewportWidth - $(".window-controls-container").width() - $("#button-bar-editor").width()});
   }
+}
+
+/* ----------------------------------------------------------------------------
+   PREFERENCE FUNCTIONS
+---------------------------------------------------------------------------- */
+function loadPrefs() {
+  let prefs = store.get('prefs');
+  if (prefs === undefined) prefs = {};
+  return prefs;
+}
+
+function loadLibrary() {
+  if (!prefs.hasOwnProperty("libraryPath")) prefs['libraryPath'] = app.getPath(documents);
+  fs.readFile('${libraryPath}/library.json', 'utf8', (err, data) => {
+    if (err) {
+      console.log("Whoops!");
+    } else {
+      return JSON.parse(data);
+    }
+  };
 }

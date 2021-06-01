@@ -55,8 +55,48 @@ html {
 }
 
 #pane-library-interior > .header {
-  
+  padding: 5px;
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: bold;
 }
+
+#pane-library-interior > .item {
+  display: inline-block;
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.indent-0 {
+  padding-left: 10px !important;
+}
+
+.indent-1 {
+  padding-left: 25px !important;
+}
+
+.indent-2 {
+  padding-left: 40px !important;
+}
+
+.indent-3 {
+  padding-left: 55px !important;
+}
+
+.indent-4 {
+  padding-left: 65px !important;
+}
+
+.indent-5 {
+  padding-left: 80px !important;
+}
+
+.indent-6 {
+  padding-left: 95px !important;
+}
+
 
 /**************************************************************/
 /* DOCUMENTS PANE                                             */

@@ -23,3 +23,15 @@ html {
   background-color: #fff;
   border-right: 2px solid #ddd;
 }
+
+#pane-library-interior > .header {
+  color: #aaa;
+}
+
+.primary-text {
+  color: #444;
+}
+
+.secondary-text {
+  color: #777;
+}
