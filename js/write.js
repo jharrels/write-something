@@ -104,8 +104,10 @@ let titlebar = new customTitlebar.Titlebar({
    LOAD PREFS AND SETUP THE GUI AT LAUNCH
 ---------------------------------------------------------------------------- */
 var prefs = loadPrefs();
-var library = loadLIbrary();
+var library = loadLibrary();
+console.log(library);
 repositionUI();
+redrawLibrary();
 
 $(".button").on("click", function() {
   alert("clicked!");
@@ -164,6 +166,31 @@ function repositionUI() {
   }
 }
 
+function redrawLibrary() {
+  let depth = 0;
+  let libraryObj;
+  let headerObj = $("<div>", {"class": "header"}).text("Library");
+  let treeObj = processLevel(treeObj, depth, library['data']);
+  libraryObj = headerObj + treeObj;
+  $("#pane-library-interior").html(libraryObj);
+}
+
+function processLevel(treeObj, depth, libraryData) {
+  let outerObj;
+  for (i=0; i<libraryData.length; i++) {
+    let icon = libraryData[i]['icon'];
+    let name = libraryData[i]['name'];
+    let data = libraryData[i]['data'];
+    arrowObj = $("<i>", {"class": "primary-text fas fa-caret-down fa-fw"});
+    iconObj = $("<i>", {"class": `secondary-text fas fa-${icon} fa-fw`});
+    innerObj = $("<span>").html(arrowObj + iconObj + name);
+    outerObj = $("<div>", {"class": `indent-${depth} item primary-text`}).html(innerObj);
+    treeObj += outerObj;
+    treeObj = processLevel(treeObj, depth+1, data);
+    return treeObj;
+  }
+}
+
 /* ----------------------------------------------------------------------------
    PREFERENCE FUNCTIONS
 ---------------------------------------------------------------------------- */
@@ -174,12 +201,16 @@ function loadPrefs() {
 }
 
 function loadLibrary() {
-  if (!prefs.hasOwnProperty("libraryPath")) prefs['libraryPath'] = app.getPath(documents);
-  fs.readFile('${libraryPath}/library.json', 'utf8', (err, data) => {
-    if (err) {
-      console.log("Whoops!");
-    } else {
-      return JSON.parse(data);
-    }
-  };
+  if (!prefs.hasOwnProperty("libraryPath")) prefs['libraryPath'] = app.getPath('documents')+"/Write Something! Library";
+  try {
+    fs.accessSync(prefs['libraryPath'], fs.constants.R_OK);
+  } catch(err) {
+    fs.mkdirSync(prefs['libraryPath']);
+  }
+  try {
+    data = fs.readFile(prefs['libraryPath'] + "/library.json", 'utf8');
+    return JSON.parse(data);
+  } catch(err) {
+    return {"data": []};
+  }
 }
