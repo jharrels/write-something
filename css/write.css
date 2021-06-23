@@ -54,11 +54,15 @@ html {
   cursor: ew-resize;
 }
 
-#pane-library-interior > .header {
-  padding: 5px;
-  font-size: 12px;
+.jqtree-title {
   font-family: sans-serif;
   font-weight: bold;
+}
+
+.jqtree_common {
+  cursor: default;
+  margin: 2px 0;
+  font-weight: normal;
 }
 
 #pane-library-interior > .item {
@@ -68,35 +72,6 @@ html {
   font-size: 14px;
   font-family: sans-serif;
 }
-
-.indent-0 {
-  padding-left: 10px !important;
-}
-
-.indent-1 {
-  padding-left: 25px !important;
-}
-
-.indent-2 {
-  padding-left: 40px !important;
-}
-
-.indent-3 {
-  padding-left: 55px !important;
-}
-
-.indent-4 {
-  padding-left: 65px !important;
-}
-
-.indent-5 {
-  padding-left: 80px !important;
-}
-
-.indent-6 {
-  padding-left: 95px !important;
-}
-
 
 /**************************************************************/
 /* DOCUMENTS PANE                                             */
@@ -156,7 +131,7 @@ html {
 /**************************************************************/
 /* BUTTONS AND OTHER UI ELEMENTS                              */
 /**************************************************************/
-.button {
+.titlebar-button {
   padding: 4px 12px 4px 12px;
   margin: 4px 4px 4px 0px;
   border-radius: 5px;
@@ -164,4 +139,75 @@ html {
   font-size: 14px;
   display: inline-block;
   -webkit-app-region: no-drag;
+}
+
+/**************************************************************/
+/* MODALS                                                     */
+/**************************************************************/
+.modal {
+  top: 30px;
+  left: 0;
+  z-index: 3;
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 30px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: auto;
+  height: auto;
+  z-index: 4;
+  border-radius: 7px;
+  box-shadow: 0 10px 10px 4px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content > .modal-title {
+  font-size: 20px;
+  font-family: sans-serif;
+  padding: 10px 20px;
+}
+
+.modal-content > .modal-body {
+  padding: 10px 20px;
+}
+
+.modal-content > .modal-footer {
+  padding: 10px 20px;
+}
+
+.modal-footer::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/**************************************************************/
+/* INPUT STYLING                                              */
+/**************************************************************/
+input[type="text"] {
+  padding: 5px 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+button.button {
+  min-width: 100px;
+  padding: 10px 5px;
+  border: none;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.modal-footer .button:first-of-type {
+  margin-right: 0;
+}
+
+/**************************************************************/
+/* MISCELLANEOUS                                              */
+/**************************************************************/
+.float-right {
+  float: right;
 }

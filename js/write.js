@@ -103,14 +103,83 @@ let titlebar = new customTitlebar.Titlebar({
 /* ----------------------------------------------------------------------------
    LOAD PREFS AND SETUP THE GUI AT LAUNCH
 ---------------------------------------------------------------------------- */
+var selectedNodeId;
+var $treeObj;
 var prefs = loadPrefs();
-var library = loadLibrary();
-console.log(library);
+var [library, libraryMetadata] = loadLibrary();
 repositionUI();
-redrawLibrary();
+$treeObj = $("#libraryTree").tree({
+  animationSpeed: 50,
+  data: library,
+  autoOpen: true,
+  dragAndDrop: true,
+  autoEscape: false,
+  onCanMoveTo: function(moved_node, target_node, position) {
+        if (target_node.is_menu) {
+            // Example: can move inside menu, not before or after
+            return (position == 'inside');
+        }
+        else {
+            return true;
+        }
+    }
+});
 
-$(".button").on("click", function() {
-  alert("clicked!");
+/* ----------------------------------------------------------------------------
+   EVENT HANDLERS
+---------------------------------------------------------------------------- */
+$('#libraryTree').on(
+    'tree.contextmenu',
+    function(event) {
+        var node = event.node;
+        selectedNodeId = node.id;
+        const menu = new Menu();
+        menu.append(new MenuItem({
+          label: "New Folder",
+          click() {
+            $("#input-modal-folder-name").val("");
+            showModal("modal-folder");
+            $("#modal-folder .modal-content .modal-title").html("New Folder");
+            $("#modal-folder .modal-content .modal-body input").focus();
+          }
+      }));
+      if (node.id > 1) {
+          menu.append(new MenuItem({
+              label: "Edit Folder",
+              click() {
+                $("#input-modal-folder-name").val("");
+                showModal("modal-folder");
+                $("#modal-folder .modal-content .modal-title").html("New Folder");
+                $("#modal-folder .modal-content .modal-body input").focus();
+              }
+
+          }));
+      }
+      menu.popup({window: remote.getCurrentWindow()});
+    }
+);
+
+$('#libraryTree').on(
+    'tree.dblclick',
+    function(event) {
+        var node = event.node;
+          $(node).html("");
+    }
+);
+
+
+$("#button-modal-folder-cancel").on("click", function() {
+  hideModal("modal-folder");
+});
+
+$("#button-modal-folder-ok").on("click", function() {
+  let parentNode = $treeObj.tree('getNodeById', selectedNodeId);
+  let newName = $("#input-modal-folder-name").val();
+  $treeObj.tree('appendNode', {name: '<i class="fas fa-folder"></i> '+newName, children: [], id: libraryMetadata['nextId']}, parentNode);
+  let newNode = $treeObj.tree('getNodeById', libraryMetadata['nextId']);
+  $treeObj.tree('selectNode', newNode);
+  libraryMetadata['nextId']++;
+  hideModal("modal-folder");
 });
 
 $("#divider-library").draggable({ containment: "parent", axis: "x",
@@ -166,29 +235,16 @@ function repositionUI() {
   }
 }
 
-function redrawLibrary() {
-  let depth = 0;
-  let libraryObj;
-  let headerObj = $("<div>", {"class": "header"}).text("Library");
-  let treeObj = processLevel(treeObj, depth, library['data']);
-  libraryObj = headerObj + treeObj;
-  $("#pane-library-interior").html(libraryObj);
+function showModal(modalId) {
+  $(`#${modalId}`).css({
+    "display": "flex",
+  });
 }
 
-function processLevel(treeObj, depth, libraryData) {
-  let outerObj;
-  for (i=0; i<libraryData.length; i++) {
-    let icon = libraryData[i]['icon'];
-    let name = libraryData[i]['name'];
-    let data = libraryData[i]['data'];
-    arrowObj = $("<i>", {"class": "primary-text fas fa-caret-down fa-fw"});
-    iconObj = $("<i>", {"class": `secondary-text fas fa-${icon} fa-fw`});
-    innerObj = $("<span>").html(arrowObj + iconObj + name);
-    outerObj = $("<div>", {"class": `indent-${depth} item primary-text`}).html(innerObj);
-    treeObj += outerObj;
-    treeObj = processLevel(treeObj, depth+1, data);
-    return treeObj;
-  }
+function hideModal(modalId) {
+  $(`#${modalId}`).css({
+    "display": "none",
+  });
 }
 
 /* ----------------------------------------------------------------------------
@@ -199,7 +255,9 @@ function loadPrefs() {
   if (prefs === undefined) prefs = {};
   return prefs;
 }
-
+/* ----------------------------------------------------------------------------
+   LIBRARY FUNCTIONS
+---------------------------------------------------------------------------- */
 function loadLibrary() {
   if (!prefs.hasOwnProperty("libraryPath")) prefs['libraryPath'] = app.getPath('documents')+"/Write Something! Library";
   try {
@@ -208,9 +266,28 @@ function loadLibrary() {
     fs.mkdirSync(prefs['libraryPath']);
   }
   try {
-    data = fs.readFile(prefs['libraryPath'] + "/library.json", 'utf8');
-    return JSON.parse(data);
+    let data = fs.readFile(prefs['libraryPath'] + "/library.json", 'utf8');
+    data = JSON.parse(data);
+    return [data['library'], data['metadata']];
   } catch(err) {
-    return {"data": []};
+    let libraryData =  [{name: '<i class="fas fa-book-open"></i> Library', children: [], id: 1}];
+    let libraryMetadata = {nextId: 2};
+    return [libraryData, libraryMetadata];
   }
+}
+
+function saveLibrary() {
+  console.log(library);
+  let librarySaveData = $treeObj.tree('toJson');
+  let librarySaveMetadata = JSON.stringify(libraryMetadata);
+  let saveData = `{"library":${librarySaveData}, "metadata":${librarySaveMetadata}}`;
+  fs.writeFile(prefs['libraryPath'] + "/library.json", saveData, 'utf8', (err) => {
+    if(err) {
+        throw err;
+    }
+  });
+}
+
+function addItemToLibrary(parentId, itemName, itemIcon) {
+
 }

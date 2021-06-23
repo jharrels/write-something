@@ -6,36 +6,50 @@
     <meta name="description" content="Write Something! is a writing app that aims to be modern, flexible, and feature-rich.">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" id="theme-css" href="css/library.tree.css" />
     <link rel="stylesheet" id="theme-css" href="css/write.css" />
     <link rel="stylesheet" id="theme-css" href="css/themes/light.css" />
   </head>
   <body>
     <div id="pane-library">
       <div id="pane-library-interior">
-        <div class="header">
-          Library
-        </div>
+        <div id="libraryTree"></div>
       </div>
     </div>
     <div id="divider-library">
     </div>
     <div id="pane-documents">
-      <div class="button"><i class="fas fa-plus fa-fw"></i></div>
-      <div class="button"><i class="fas fa-search fa-fw"></i></div>
+      <div class="titlebar-button"><i class="fas fa-plus fa-fw"></i></div>
+      <div class="titlebar-button"><i class="fas fa-search fa-fw"></i></div>
       <div id="pane-documents-interior">
       </div>
     </div>
     <div id="divider-documents">
     </div>
     <div id="button-bar-editor">
-      <div class="button"><i class="fas fa-download fa-fw"></i></div>
-      <div class="button"><i class="fas fa-font fa-fw"></i></div>
-      <div class="button"><i class="fas fa-tachometer-alt fa-fw"></i></div>
+      <div class="titlebar-button"><i class="fas fa-download fa-fw"></i></div>
+      <div class="titlebar-button"><i class="fas fa-font fa-fw"></i></div>
+      <div class="titlebar-button"><i class="fas fa-tachometer-alt fa-fw"></i></div>
     </div>
     <div id="pane-editor">
+    </div>
+    <div id="modal-folder" class="modal">
+      <div class="modal-content">
+        <div class="modal-title primary-text">
+          Folder
+        </div>
+        <div class="modal-body">
+          <input type="text" placeholder="Untitled Folder" id="input-modal-folder-name">
+        </div>
+        <div class="modal-footer">
+          <button id="button-modal-folder-cancel" class="button button-secondary float-right">Cancel</button>
+          <button id="button-modal-folder-ok" class="button button-primary float-right">OK</button>
+        </div>
+      </div>
     </div>
   </body>
   <script>window.$ = window.jQuery = require('jquery');</script>
   <script>require('jquery-ui-dist/jquery-ui');</script>
+  <script src="js/library.tree.js"></script>
   <script src="js/write.js"></script>
 </html>

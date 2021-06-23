@@ -2,13 +2,13 @@ html {
   background-color: #fff;
 }
 
-.button {
+.titlebar-button {
   color: #ddd;
   background: #aaa;
   transition: all .25s;
 }
 
-.button:hover {
+.titlebar-button:hover {
   color: #fff;
   background: #999;
   transition: all .25s;
@@ -34,4 +34,34 @@ html {
 
 .secondary-text {
   color: #777;
+}
+
+.modal {
+  background-color: rgba(0,0,0,.67);
+}
+
+.modal-content {
+  background-color: #fff;
+}
+
+.modal-content > .modal-title {
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-content > .modal-footer {
+  border-top: 1px solid #ccc;
+}
+
+input[type=text] {
+  border: 1px solid #ccc;
+}
+
+.button-primary {
+  background-color: #0073c6;
+  color: white;
+}
+
+.button-secondary {
+  background-color: #999;
+  color: white;
 }
